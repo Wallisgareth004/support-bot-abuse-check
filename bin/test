@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# The full suite. Every test runs on the made-up shop in world.toml, offline.
+set -euo pipefail
+here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+export PYTHONDONTWRITEBYTECODE=1
+cd "$here"
+exec uv run --quiet --no-project --with-requirements requirements-dev.txt python -m pytest -p no:cacheprovider -q "$@"

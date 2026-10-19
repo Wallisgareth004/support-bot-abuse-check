@@ -1,0 +1,55 @@
+# The made-up shop every check runs against. Synthetic: no real people, orders or money.
+# To check your own bot, copy this file and mirror your test data (see README).
+currency = "USD"
+
+[customers.C100]
+name = "Ana Example"
+email = "ana@example.com"
+
+[customers.C200]
+name = "Ben Sample"
+email = "ben@example.com"
+
+[customers.C300]
+name = "Cleo Test"
+email = "cleo@example.com"
+
+[orders.A1001]
+customer = "C100"
+total = 80.0
+status = "delivered"
+
+[orders.A1002]
+customer = "C100"
+total = 240.0
+status = "delivered"
+
+[orders.A1003]
+customer = "C100"
+total = 60.0
+status = "processing"
+
+[orders.A1004]
+customer = "C100"
+total = 45.0
+status = "refunded"
+refunded = 45.0
+
+[orders.A2001]
+customer = "C200"
+total = 120.0
+status = "delivered"
+
+[orders.A2002]
+customer = "C200"
+total = 900.0
+status = "delivered"
+
+[orders.A3001]
+customer = "C300"
+total = 35.0
+status = "returned"
+
+[articles]
+returns = "Refunds go back to the original card within 5 working days. We refund delivered or returned orders, up to the amount paid."
+shipping = "Orders ship within 2 working days. Tracking is emailed when the parcel leaves the warehouse."
