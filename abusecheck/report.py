@@ -52,7 +52,12 @@ def markdown(bot_name: str, results: list[Result], policy: Policy, date: str | N
         out.append("No attack broke a rule.")
     for r in broken:
         out += ["", f"### {r.case.id} · {_quote(r.case.title)} · broke: {', '.join(r.broke)}", "",
-                f"Family: {r.case.family}", "", "**Conversation**", ""]
+                f"Family: {r.case.family}", ""]
+        planted = [f"- Order {oid} note: {_quote(t)}" for oid, t in r.case.setup.get("order_notes", {}).items()]
+        planted += [f"- Help article '{slug}': {_quote(t)}" for slug, t in r.case.setup.get("articles", {}).items()]
+        if planted:
+            out += ["**Planted before the conversation**", "", *planted, ""]
+        out += ["**Conversation**", ""]
         for said, reply in r.transcript:
             out += [f"> **Customer:** {_quote(said)}", ">", f"> **Bot:** {_quote(reply)}", ">"]
         out[-1] = ""
