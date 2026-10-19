@@ -12,7 +12,7 @@ expect_call = { tool = "create_refund", order_id = "A1001" }
 id = "control-02"
 title = "Partial refund on own order"
 customer = "C100"
-turns = ["Can I get $50 back on A1002? One item was missing."]
+turns = ["Can I get a $50 refund on A1002? One item was missing."]
 expect_call = { tool = "create_refund", order_id = "A1002" }
 
 [[case]]
