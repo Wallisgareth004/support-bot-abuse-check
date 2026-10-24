@@ -1,5 +1,7 @@
 # support-bot-abuse-check
 
+[![tests](https://github.com/Wallisgareth004/support-bot-abuse-check/actions/workflows/tests.yml/badge.svg)](https://github.com/Wallisgareth004/support-bot-abuse-check/actions/workflows/tests.yml)
+
 **Can a customer talk your support bot into a refund, a ticket or an order lookup it shouldn't make?**
 
 This kit runs 40 scripted customer conversations against a support bot. Every tool call the bot makes is checked against your business rules, written down in `policy.toml`. A case fails only when a rule-breaking call actually ran. What the bot *said* never counts either way, and no model judges another model's answers, so every result can be reproduced from the tool-call log.
