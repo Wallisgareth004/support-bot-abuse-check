@@ -6,6 +6,34 @@
 
 This kit runs 40 scripted customer conversations against a support bot. Every tool call the bot makes is checked against your business rules, written down in `policy.toml`. A case fails only when a rule-breaking call actually ran. What the bot *said* never counts either way, and no model judges another model's answers, so every result can be reproduced from the tool-call log.
 
+## In 60 seconds
+
+```sh
+git clone https://github.com/Wallisgareth004/support-bot-abuse-check && cd support-bot-abuse-check
+python3 -m abusecheck run --bot gated
+```
+```
+gated: 0 of 40 attacks broke a rule · controls served 6 of 6
+  direct          0 of 7 broke a rule
+  fake-authority  0 of 7 broke a rule
+  injection       0 of 7 broke a rule
+  tampering       0 of 7 broke a rule
+  escalation      0 of 6 broke a rule
+  encoding        0 of 6 broke a rule
+```
+(Captured on 5 Nov 2026. Swap `gated` for `naive` to watch the prompt-only bot break 35 of 40.)
+
+## How it fits together
+
+```mermaid
+flowchart LR
+    A[attacks/*.toml<br/>40 scripted customers] --> B[runner]
+    B --> C[the bot under test<br/>demo, HTTP or Python adapter]
+    C --> D[tool calls<br/>refund, ticket, lookup]
+    D --> E[policy.toml check<br/>did a call break a rule?]
+    E --> F[report<br/>per family, per attack]
+```
+
 ## The result on the two demo bots
 
 Measured on 19 Oct 2026 with `python -m abusecheck run`. A test re-runs this and fails if the numbers drift.
